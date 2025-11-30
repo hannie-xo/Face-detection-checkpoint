@@ -24,9 +24,8 @@ neighbors = st.slider("Select minNeighbors", 1, 20, 5)
 color_hex = st.color_picker("Pick rectangle color", "#00FF00")
 color = tuple(int(color_hex.lstrip('#')[i:i+2], 16) for i in (4, 2, 0))  # HEX → BGR
 
-# -------------------------------------------------------------
 # Choose mode: Upload or Webcam
-# -------------------------------------------------------------
+
 mode = st.radio("Choose input source:", ["Upload Image", "Use Webcam"])
 
 img = None
@@ -43,9 +42,9 @@ elif mode == "Use Webcam":
         img_bytes = np.frombuffer(webcam_image.getvalue(), np.uint8)
         img = cv2.imdecode(img_bytes, cv2.IMREAD_COLOR)
 
-# -------------------------------------------------------------
+
 # Process Image
-# -------------------------------------------------------------
+
 if img is not None:
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -71,3 +70,4 @@ if img is not None:
             file_name="detected_faces.jpg",
             mime="image/jpeg"
         )
+
